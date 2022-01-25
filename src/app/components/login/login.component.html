@@ -1,0 +1,35 @@
+<div class="login-container">
+    
+    <form [formGroup]="loginForm" class="loginForm">
+        <h1>Login</h1>
+        <div class="login-field-section">
+            <div class='error-section' *ngIf="loginErrorMessage != ''">
+                {{loginErrorMessage}}
+            </div>
+            <div class='login-field-group'>
+                <label class='label'>Username</label>
+                <input type='text' id='username' formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                    <div *ngIf="f.username.errors.minlength">Username should have minimum 3 characters</div>
+                </div>
+            </div>
+    
+            <div class='login-field-group'>
+                <label class='label'>Password</label>
+                <input type='text' id='password' formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password should have minimum 6 characters</div>
+                </div>
+            </div>
+        </div>
+
+        <div class='login-buttons'>
+            <button class='btn btn-info' (click)="login()">Login</button>
+            <button class='btn btn-outline' (click)="resetLoginForm()">Clear</button>
+        </div>
+    </form>
+</div>
